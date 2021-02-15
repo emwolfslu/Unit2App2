@@ -1,12 +1,61 @@
-<title>Elliott's JSAPI 4.18 Map</title>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Unit 2 Problem 1 App 2</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.18/"></script>
+
+  <script>
+  require([
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+
+    "esri/layers/FeatureLayer"
+
+  ], function(esriConfig,Map, MapView, FeatureLayer) {
+
+  esriConfig.apiKey = "AAPK242b0b70c52247b1a693f1e5cf4885c0VOLNYS8BqA2mE6WWw-9Ts4E8sFD6ZrdQEEy_pIBYouQKO6poJVlvg484pE1SbZz6";
+
+  const map = new Map({
+    basemap: "arcgis-topographic"
+  });
+
+  const view = new MapView({
+    container: "viewDiv",
+    map: map,
+    center: [-149.900284,61.218056],
+    zoom: 5
+  });
+
+//National Parks Feature Layer 
+  var featureLayer_1 = new FeatureLayer({
+  url: "https://services1.arcgis.com/8DJsAMKuU5pXLFcd/arcgis/rest/services/National_Parks_in_Alaska/FeatureServer"
+});
+
+map.add(featureLayer_1);
     
-<link rel="stylesheet" href="style.css"/>
+//Iditarod Trail Feature Layer
+var featureLayer_2 = new FeatureLayer({
+  url: "https://services.arcgis.com/6dxqrE38upDMg1va/arcgis/rest/services/AKiditarod2Trail/FeatureServer"
+});
 
-<link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
-<script src="https://js.arcgis.com/4.18/"></script>
+map.add(featureLayer_2);
 
-  
+  });
+</script>
+
+</head>
 <body>
   <div id="viewDiv"></div>
-  <script src="script.js"></script>
-  </body>
+</body>
+</html>
